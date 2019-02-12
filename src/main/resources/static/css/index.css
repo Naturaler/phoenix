@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* 指定全局默认配置 */
+:root {
+    font-size: 1em;
+}
+#head, #navigations, #articles, #tail, #archives, #tags, #category {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#head {
+    margin-top: 5em;
+    text-align: center;
+}
+.title {
+    /* 背景颜色 */
+    background-color: black;
+    /* 字体颜色 */
+    color: white;
+    /* 字体大小：相对于全局配置的3倍大小 */
+    font-size: 2rem;
+    /* 展现形式：内联块 */
+    display: inline-block;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.signature {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#navigations {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.navigation {
+    width: 300px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.navigation:hover {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+    padding-bottom: 3px;
+}
+/* 文章列表-开始 */
+#articles {
+    margin-top: 30px;
+}
+.article {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.article_title {
+    font-size: 2rem;
+}
+.article_title:hover {
+    cursor: pointer;
+    border-bottom: 2px solid black;
+    padding-bottom: 3px;
+}
+.article_info {
+    color: gray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.article_info_detail {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.article_desc {
+    text-align: left;
+}
+.article p {
+    padding: 5px 0px;
+    color: #565656;
+}
+/* 文章列表-结束 */
+/* 页码开始 */
+#tail {
+    border-top: 1px solid #e9e9e9;
+    padding-top: 20px;
+}
+#tail ul {
+    /* 去掉小黑点 */
+    list-style: none;
+    /* border-top: 1px; */
+}
+#tail li {
+    display: inline;
+    padding: 20px;
+}
+/* 鼠标悬浮 */
+#tail li:hover {
+    background-color: #e9e9e9;
+    /* 指针样式 */
+    cursor: pointer;
+}
+/* 页码结束 */

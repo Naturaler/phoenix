@@ -1,0 +1,14 @@
+#tags {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.tag {
+    border-bottom: 1px solid #e9e9e9;
+    padding: 5px;
+    margin: 5px;
+    color: #e9e9e9;
+}
+.tag:hover {
+    cursor: pointer;
+    color: black;
+}
