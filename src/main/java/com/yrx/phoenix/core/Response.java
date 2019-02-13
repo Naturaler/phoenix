@@ -11,15 +11,15 @@ public class Response<T> {
     private String msg;
     private T result;
 
-    public static <T> Response success() {
+    public static Response success() {
         return instance(200, "请求成功");
     }
 
-    public static <T> Response fail() {
+    public static Response fail() {
         return instance(500, "请求失败");
     }
 
-    private static <T> Response instance(Integer code, String msg) {
+    private static Response instance(Integer code, String msg) {
         Response response = new Response();
         response.setCode(code);
         response.setMsg(msg);

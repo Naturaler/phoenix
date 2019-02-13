@@ -11,7 +11,8 @@ import java.util.Date;
 @Data
 public class ArticleVO {
     private String title; // 标题
-    private String content; // 内容
+    private String content; // 带html标签的内容
+    private String plainText; // 带段落格式的内容
     private String category; // 类别
     private String[] tags; // 标签数组
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
