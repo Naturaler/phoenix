@@ -2,7 +2,9 @@ package com.yrx.phoenix.ctrl;
 
 import com.yrx.phoenix.core.Response;
 import com.yrx.phoenix.dto.ArticleDTO;
+import com.yrx.phoenix.service.ArticleService;
 import com.yrx.phoenix.vo.ArticleVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/article")
 public class ArticleCtrl {
+    @Autowired
+    private ArticleService service;
 
     /**
      * 分页加载文章列表：每页限制10条记录
@@ -62,6 +66,7 @@ public class ArticleCtrl {
      */
     @PostMapping("/createOUpdate")
     public Response createOUpdate(ArticleVO articleVO) {
+        service.createOUpdate(articleVO);
         return Response.success();
     }
 }
