@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,21 +23,11 @@ public class ArticleCtrl {
 
     /**
      * 分页加载文章列表：每页限制10条记录
-     * @param pagination 页码
+     * @param pagination 页码：从0开始
      */
     @GetMapping("/list")
     public Response<List<ArticleDTO>> list(Integer pagination) {
-        ArticleDTO dto = new ArticleDTO();
-        dto.setTitle("title");
-        dto.setContent("node");
-        dto.setCategory("修仙");
-        dto.setUpdateTime(new Date());
-        List<ArticleDTO> dtos = new ArrayList<>(1);
-        dtos.add(dto);
-
-        Response<List<ArticleDTO>> response = Response.success();
-        response.setResult(dtos);
-        return response;
+        return service.list(pagination);
     }
 
     /**
@@ -47,17 +35,9 @@ public class ArticleCtrl {
      * @param id 文章id
      * @return 文章
      */
-    @GetMapping("/getArticleByTitle")
-    public Response getArticleByTitle(Integer id) {
-        ArticleDTO dto = new ArticleDTO();
-        dto.setTitle("title");
-        dto.setContent("node");
-        dto.setCategory("修仙");
-        dto.setUpdateTime(new Date());
-
-        Response<ArticleDTO> response = Response.success();
-        response.setResult(dto);
-        return response;
+    @GetMapping("/getArticleById")
+    public Response<ArticleDTO> getArticleById(Integer id) {
+        return service.getArticleById(id);
     }
 
     /**
@@ -66,7 +46,6 @@ public class ArticleCtrl {
      */
     @PostMapping("/createOUpdate")
     public Response createOUpdate(ArticleVO articleVO) {
-        service.createOUpdate(articleVO);
-        return Response.success();
+        return service.createOUpdate(articleVO);
     }
 }

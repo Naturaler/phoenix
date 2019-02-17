@@ -1,18 +1,21 @@
 package com.yrx.phoenix.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.yrx.phoenix.entity.Article;
 import lombok.Data;
-
-import java.util.Date;
 
 /**
  * Created by r.x on 2019/2/12.
  */
 @Data
 public class ArticleDTO {
-    private String title; // 标题
+    private Article article;
     private String content; // 内容
-    private String category; // 类别
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date updateTime; // 更新时间
+    private String tags; // 标签
+
+    public ArticleDTO() {
+    }
+
+    public ArticleDTO(Article article) {
+        this.article = article;
+    }
 }

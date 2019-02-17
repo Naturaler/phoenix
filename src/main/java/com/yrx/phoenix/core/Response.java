@@ -12,17 +12,22 @@ public class Response<T> {
     private T result;
 
     public static Response success() {
-        return instance(200, "请求成功");
+        return instance(200, "请求成功", null);
+    }
+
+    public static <T> Response<T> success(T t) {
+        return instance(200, "请求成功", t);
     }
 
     public static Response fail() {
-        return instance(500, "请求失败");
+        return instance(500, "请求失败", null);
     }
 
-    private static Response instance(Integer code, String msg) {
-        Response response = new Response();
+    private static <T> Response<T> instance(Integer code, String msg, T t) {
+        Response<T> response = new Response<>();
         response.setCode(code);
         response.setMsg(msg);
+        response.setResult(t);
         return response;
     }
 }
