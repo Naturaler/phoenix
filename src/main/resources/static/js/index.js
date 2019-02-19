@@ -2,7 +2,7 @@
  * 初始化加载内容
  */
 function init() {
-    var url = "http://localhost:8080/edit/getArticleByTitle";
+    var url = "http://localhost:8080/article/list";
     var data = "";
     get(url, data);
 }

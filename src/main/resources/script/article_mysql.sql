@@ -10,6 +10,15 @@ create table if not exists `article` (
   `title` varchar(100) not null comment '标题',
   `outline` varchar(500) not null comment '概述',
   `category` varchar(50) not null comment '类别',
-  `update_time` timestamp not null comment '更新时间',
-  `rowkey` varchar(200) not null default '' comment 'hbase主键'
+  `update_time` timestamp not null default now() comment '更新时间',
+  `insert_time` timestamp not null default '2000-01-01 00:00:00' comment '插入时间',
+  `content_id` integer not null default '-1' comment 'content主键'
+) default charset = utf8 auto_increment = 1;
+
+# 创建content表
+create table if not exists `content` (
+  `id` integer not null auto_increment primary key comment '主键id',
+  `content` text not null comment '文章内容',
+  `update_time` timestamp not null default now() comment '更新时间',
+  `insert_time` timestamp not null default '2000-01-01 00:00:00' comment '插入时间'
 ) default charset = utf8 auto_increment = 1;

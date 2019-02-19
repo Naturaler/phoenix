@@ -14,7 +14,23 @@ public class ArticleSqlExtendProvider {
         sql.SELECT("outline");
         sql.SELECT("category");
         sql.SELECT("update_time");
+        sql.SELECT("insert_time");
+        sql.SELECT("content_id");
         sql.FROM("article limit " + limitCondition(pagination));
+        return sql.toString();
+    }
+
+    public String getById(Integer id) {
+        SQL sql = new SQL();
+        sql.SELECT("id");
+        sql.SELECT("title");
+        sql.SELECT("outline");
+        sql.SELECT("category");
+        sql.SELECT("update_time");
+        sql.SELECT("insert_time");
+        sql.SELECT("content_id");
+        sql.FROM("article");
+        sql.WHERE("id = " + id);
         return sql.toString();
     }
 
