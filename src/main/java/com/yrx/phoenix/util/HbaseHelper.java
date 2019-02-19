@@ -25,7 +25,9 @@ public class HbaseHelper {
             Configuration config = HBaseConfiguration.create();
             //设置配置文件信息
             // config.set("hbase.zookeeper.quorum", "117.48.201.248:2181"); // 京东云
-            config.set("hbase.zookeeper.quorum", "192.168.163.144:2181");
+            config.set("hbase.zookeeper.quorum", "192.168.163.148");
+            config.set("hbase.zookeeper.property.clientPort", "2181");
+            // config.set("hbase.master", "192.168.163.148:60000");
             //创建数据库对象
             Connection connection = ConnectionFactory.createConnection(config);
             admin = connection.getAdmin();
