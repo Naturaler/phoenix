@@ -28,6 +28,9 @@ public class ArticleCtrl {
      */
     @GetMapping("/list")
     public Response<List<ArticleDTO>> list(Integer pagination) {
+        if (pagination == null) {
+            pagination = 0;
+        }
         return queryService.list(pagination);
     }
 
@@ -48,7 +51,7 @@ public class ArticleCtrl {
      * @param articleVO 文章
      */
     @PostMapping("/createOUpdate")
-    public Response createOUpdate(@RequestBody ArticleVO articleVO) {
+    public Response<Integer> createOUpdate(@RequestBody ArticleVO articleVO) {
         return updateService.createOUpdate(articleVO);
     }
 }

@@ -11,6 +11,7 @@ public class ArticleDTO {
     private Article article;
     private String content; // 内容
     private String tags; // 标签
+    private Integer amount; // 总数
 
     public ArticleDTO() {
     }

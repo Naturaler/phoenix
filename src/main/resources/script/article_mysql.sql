@@ -22,3 +22,12 @@ create table if not exists `content` (
   `update_time` timestamp not null default now() comment '更新时间',
   `insert_time` timestamp not null default '2000-01-01 00:00:00' comment '插入时间'
 ) default charset = utf8 auto_increment = 1;
+
+# 标签tag_info表
+create table if not exists `tag_info` (
+  `id` integer not null auto_increment primary key comment '主键id',
+  `article_id` integer not null comment '文章id',
+  `tag` varchar(20) not null default '' comment '文章tag',
+  `update_time` timestamp not null default now() comment '更新时间',
+  `insert_time` timestamp not null default '2000-01-01 00:00:00' comment '插入时间'
+) default charset = utf8 auto_increment = 1;

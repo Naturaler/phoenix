@@ -3,13 +3,12 @@ package com.yrx.phoenix.service;
 import com.yrx.phoenix.core.Response;
 import com.yrx.phoenix.dao.ArticleMapper;
 import com.yrx.phoenix.dao.ContentMapper;
-import com.yrx.phoenix.entity.Article;
-import com.yrx.phoenix.entity.ArticleExample;
-import com.yrx.phoenix.entity.Content;
-import com.yrx.phoenix.entity.ContentExample;
+import com.yrx.phoenix.dao.TagInfoMapper;
+import com.yrx.phoenix.entity.*;
 import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -24,14 +23,38 @@ public class ArticleUpdateService {
     private ArticleMapper articleMapper;
     @Autowired
     private ContentMapper contentMapper;
+    @Autowired
+    private TagInfoMapper tagInfoMapper;
 
+    @Transactional
     public Response<Integer> createOUpdate(ArticleVO articleVO) {
         Content content = convertVo2ContentEntity(articleVO);
         Article article = convertVo2ArticleEntity(articleVO);
+        Integer articleId;
         if (articleVO.getId() == null) {
-            return insertArticle(content, article);
+            articleId = insertArticle(content, article);
         } else {
-            return updateArticle(articleVO, content, article);
+            articleId = updateArticle(articleVO, content, article);
+        }
+        deleteNInsertTag(articleVO, articleId);
+        return Response.success(articleId);
+    }
+
+    private void deleteNInsertTag(ArticleVO articleVO, Integer articleId) {
+        // 删除tag
+        TagInfoExample tagInfoExample = new TagInfoExample();
+        TagInfoExample.Criteria criteria = tagInfoExample.createCriteria();
+        criteria.andArticleIdEqualTo(articleId);
+        tagInfoMapper.deleteByExample(tagInfoExample);
+        // 插入tag
+        String[] tags = articleVO.getTags().split(",");
+        for (String tag : tags) {
+            TagInfo tagInfo = new TagInfo();
+            tagInfo.setArticleId(articleId);
+            tagInfo.setUpdateTime(new Date());
+            tagInfo.setInsertTime(new Date());
+            tagInfo.setTag(tag);
+            tagInfoMapper.insert(tagInfo);
         }
     }
 
@@ -55,7 +78,7 @@ public class ArticleUpdateService {
         return content;
     }
 
-    private Response<Integer> updateArticle(ArticleVO articleVO, Content content, Article article) {
+    private Integer updateArticle(ArticleVO articleVO, Content content, Article article) {
         ContentExample contentExample = new ContentExample();
         ContentExample.Criteria contentCriteria = contentExample.createCriteria();
         contentCriteria.andIdEqualTo(articleVO.getContentId());
@@ -66,17 +89,17 @@ public class ArticleUpdateService {
         ArticleExample.Criteria articleCriteria = articleExample.createCriteria();
         articleCriteria.andIdEqualTo(articleVO.getId());
         articleMapper.updateByExample(article, articleExample);
-        return Response.success(articleVO.getId());
+        return articleVO.getId();
     }
 
-    private Response<Integer> insertArticle(Content content, Article article) {
+    private Integer insertArticle(Content content, Article article) {
         content.setInsertTime(new Date());
         contentMapper.insert(content);
 
         article.setContentId(content.getId());
         article.setInsertTime(new Date());
         articleMapper.insert(article);
-        return Response.success(article.getId());
+        return article.getId();
     }
 
 

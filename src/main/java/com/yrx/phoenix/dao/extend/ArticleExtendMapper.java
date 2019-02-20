@@ -21,6 +21,7 @@ public interface ArticleExtendMapper {
             @Result(column="outline", property="outline", jdbcType=JdbcType.VARCHAR),
             @Result(column="category", property="category", jdbcType=JdbcType.VARCHAR),
             @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="insert_time", property="insertTime", jdbcType=JdbcType.TIMESTAMP),
             @Result(column="content_id", property="contentId", jdbcType=JdbcType.INTEGER)
     })
     List<Article> listByPagination(Integer pagination);
@@ -32,6 +33,7 @@ public interface ArticleExtendMapper {
             @Result(column="outline", property="outline", jdbcType=JdbcType.VARCHAR),
             @Result(column="category", property="category", jdbcType=JdbcType.VARCHAR),
             @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="insert_time", property="insertTime", jdbcType=JdbcType.TIMESTAMP),
             @Result(column="content_id", property="contentId", jdbcType=JdbcType.INTEGER)
     })
     Article getById(Integer id);
