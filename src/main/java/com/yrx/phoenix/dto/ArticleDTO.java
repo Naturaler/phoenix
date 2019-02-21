@@ -1,22 +1,38 @@
 package com.yrx.phoenix.dto;
 
 import com.yrx.phoenix.entity.Article;
+import com.yrx.phoenix.entity.TagInfo;
 import lombok.Data;
 
+import java.util.List;
+import java.util.StringJoiner;
+
 /**
- * Created by r.x on 2019/2/12.
+ * Created by r.x on 2019/2/21.
  */
 @Data
 public class ArticleDTO {
-    private Article article;
-    private String content; // 内容
-    private String tags; // 标签
-    private Integer amount; // 总数
+    private Integer id;
+    private String title;
+    private String category;
+    private String tags;
+    private String content;
 
     public ArticleDTO() {
+
     }
 
-    public ArticleDTO(Article article) {
-        this.article = article;
+    public ArticleDTO(Article article, List<TagInfo> tagInfoList, String content) {
+        this.id = article.getId();
+        this.title = article.getTitle();
+        this.category = article.getCategory();
+        this.tags = convertTagList2Tags(tagInfoList);
+        this.content = content;
+    }
+
+    private String convertTagList2Tags(List<TagInfo> tagInfoList) {
+        StringJoiner joiner = new StringJoiner(",");
+        tagInfoList.forEach(tag -> joiner.add(tags));
+        return joiner.toString();
     }
 }

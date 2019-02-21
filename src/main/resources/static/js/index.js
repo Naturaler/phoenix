@@ -67,10 +67,10 @@ function showArticle(json) {
         return;
     }
     // console.log(json);
-    var articleList = dto.result;
+    var articleList = dto.result.articleDescList;
     for (var index in articleList) {
-        var articleObj = articleList[index].article;
-        console.log(articleObj);
+        var articleObj = articleList[index];
+        console.log("article: " + articleObj);
         var articles = document.getElementById("articles");
 
         var article = document.createElement("div");
@@ -84,7 +84,7 @@ function showArticle(json) {
 
         var article_info_detail_crete_time = document.createElement("span");
         article_info_detail_crete_time.className = "article_info_detail";
-        article_info_detail_crete_time.textContent = articleObj.insertTime;
+        article_info_detail_crete_time.textContent = articleObj.updateTime;
         var article_info_detail_line = document.createElement("span");
         article_info_detail_line.className = "article_info_detail";
         article_info_detail_line.textContent = " | ";
@@ -102,6 +102,7 @@ function showArticle(json) {
         article_info.appendChild(article_info_detail_line);
         article_info.appendChild(article_info_detail_category);
         article_title.textContent = articleObj.title;
+        article_title.id = articleObj.id;
         article.appendChild(article_title);
         article.appendChild(article_info);
         article.appendChild(article_desc);

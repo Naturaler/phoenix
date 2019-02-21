@@ -1,5 +1,6 @@
 package com.yrx.phoenix.dao.extend;
 
+import com.yrx.phoenix.dao.ArticleMapper;
 import com.yrx.phoenix.entity.Article;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by r.x on 2019/2/17.
  * 扩展mapper
  */
-public interface ArticleExtendMapper {
+public interface ArticleExtendMapper extends ArticleMapper {
 
     @SelectProvider(type= ArticleSqlExtendProvider.class, method="listByPagination")
     @Results({

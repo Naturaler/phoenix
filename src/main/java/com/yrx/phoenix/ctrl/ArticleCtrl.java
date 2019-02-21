@@ -2,13 +2,12 @@ package com.yrx.phoenix.ctrl;
 
 import com.yrx.phoenix.core.Response;
 import com.yrx.phoenix.dto.ArticleDTO;
+import com.yrx.phoenix.dto.ArticleListDTO;
 import com.yrx.phoenix.service.ArticleQueryService;
 import com.yrx.phoenix.service.ArticleUpdateService;
 import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by r.x on 2019/2/11.
@@ -27,7 +26,7 @@ public class ArticleCtrl {
      * @param pagination 页码：从0开始
      */
     @GetMapping("/list")
-    public Response<List<ArticleDTO>> list(Integer pagination) {
+    public Response<ArticleListDTO> list(Integer pagination) {
         if (pagination == null) {
             pagination = 0;
         }
@@ -40,9 +39,9 @@ public class ArticleCtrl {
      * @param id 文章id
      * @return 文章
      */
-    @GetMapping("/getArticleById")
-    public Response<ArticleDTO> getArticleById(Integer id) {
-        return queryService.getArticleById(id);
+    @GetMapping("/getById")
+    public Response<ArticleDTO> getById(Integer id) {
+        return queryService.getById(id);
     }
 
     /**
