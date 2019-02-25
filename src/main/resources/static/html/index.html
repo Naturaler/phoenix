@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <link href="../css/index.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="../js/httpUtil.js"></script>
   <script type="text/javascript" src="../js/index.js"></script>
   <title>行走的鸡汤</title>
 </head>
 <body onload="init()">
+<!-- logo 开始 -->
 <div id="head">
   <div class="title">行走的鸡汤</div>
   <div class="signature">看心情更新</div>
 </div>
+<!-- logo 结束 -->
+<!-- 导航条 开始 -->
 <div id="navigations">
   <span class="navigation">Home</span>
   <span class="navigation">Tags</span>
   <span class="navigation">Categories</span>
   <span class="navigation">Archives</span>
 </div>
+<!-- 导航条 结束 -->
+<!-- 文章列表 开始 -->
 <div id="articles">
   <div class="article">
-    <span class="article_title">《代码整洁之道》</span>
+    <span class="article_title" onclick="getArticleById(1)">《代码整洁之道》</span>
     <div class="article_info">
       <span class="article_info_detail">2019-02-03 23:25:30</span>
       <span class="article_info_detail">|</span>
@@ -179,6 +185,8 @@
     </div>
   </div>
 </div>
+<!-- 文章列表 结束 -->
+<!-- 翻页按钮 开始 -->
 <div id="tail">
   <ul>
     <li class="page_number">1</li>
@@ -188,5 +196,6 @@
     <li class="page_number">5</li>
   </ul>
 </div>
+<!-- 翻页按钮 结束 -->
 </body>
 </html>
