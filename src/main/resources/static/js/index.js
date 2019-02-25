@@ -111,9 +111,5 @@ function showArticle(json) {
 }
 
 function getArticleById(articleId) {
-    var url = "http://localhost:8080/article/getById?id=" + articleId;
-    hpptGet(url, null, function (result) {
-        console.log("get http result" + result);
-    });
-    window.location.href = "http://localhost:8080/html/article.html";
+    window.location.href = "http://localhost:8080/html/article.html?id=" + articleId;
 }
