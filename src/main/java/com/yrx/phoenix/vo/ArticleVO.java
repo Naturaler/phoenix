@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by r.x on 2019/2/9.
  */
 @Data
-public class ArticleVO {
+public class ArticleVO extends BaseVO {
     private Integer id; // 主键id
     private Integer contentId; // 文章内容id
     private String title; // 标题
