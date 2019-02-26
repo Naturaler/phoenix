@@ -103,6 +103,8 @@ function showArticle(json) {
         article_info.appendChild(article_info_detail_category);
         article_title.textContent = articleObj.title;
         article_title.id = articleObj.id;
+        // article_title.onclick = getArticleById(articleObj.id);
+        // article_title.addEventListener("onclick", getArticleById(articleObj.id), false);
         article.appendChild(article_title);
         article.appendChild(article_info);
         article.appendChild(article_desc);

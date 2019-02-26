@@ -1,9 +1,11 @@
 package com.yrx.phoenix.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.yrx.phoenix.entity.Article;
 import com.yrx.phoenix.entity.TagInfo;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -17,6 +19,8 @@ public class ArticleDTO {
     private String category;
     private String tags;
     private String content;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 
     public ArticleDTO() {
 
@@ -28,6 +32,7 @@ public class ArticleDTO {
         this.category = article.getCategory();
         this.tags = convertTagList2Tags(tagInfoList);
         this.content = content;
+        this.updateTime = article.getUpdateTime();
     }
 
     private String convertTagList2Tags(List<TagInfo> tagInfoList) {

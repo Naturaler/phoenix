@@ -6,6 +6,7 @@
   <script type="text/javascript" src="../js/index.js"></script>
   <script type="text/javascript" src="../js/httpUtil.js"></script>
   <script type="text/javascript" src="../js/article.js"></script>
+  <script type="text/javascript" src="../js/navigation.js"></script>
   <title>文章详情</title>
 </head>
 <body onload="getArticleId()">
@@ -17,11 +18,31 @@
 <!-- logo 结束 -->
 <!-- 导航条 开始 -->
 <div id="navigations">
-  <span class="navigation">Home</span>
-  <span class="navigation">Tags</span>
-  <span class="navigation">Categories</span>
-  <span class="navigation">Archives</span>
+  <span class="navigation" onclick="jump2Home()">Home</span>
+  <span class="navigation" onclick="jump2Tags()">Tags</span>
+  <span class="navigation" onclick="jump2Category()">Categories</span>
+  <span class="navigation" onclick="jump2Archive()">Archives</span>
 </div>
 <!-- 导航条 结束 -->
+<!-- 文章 开始 -->
+<div id="articles">
+  <!--<div class="article">-->
+    <!--<span class="article_title" onclick="getArticleById(1)">《代码整洁之道》</span>-->
+    <!--<div class="article_info">-->
+      <!--<span class="article_info_detail">2019-02-03 23:25:30</span>-->
+      <!--<span class="article_info_detail">|</span>-->
+      <!--<span class="article_info_detail">修仙</span>-->
+    <!--</div>-->
+    <!--<div class="article_desc">-->
+      <!--<h2>如何判断代码的好坏</h2>-->
+      <!--<br/>-->
+      <!--<p>看一段代码，无需看函数签名、参数类型等，直接看代码的命名、执行流程，就可以知道该段代码的含义，即表示该代码是好代码。-->
+        <!--工作中遇到一时没看懂的代码，会去看函数签名、去看函数的内部逻辑，虽然最后都看懂了，但却花费了更多时间与精力。-->
+      <!--</p>-->
+      <!--<p>整洁的代码，可以更快的发现问题。</p>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+<!-- 文章 结束 -->
 </body>
 </html>

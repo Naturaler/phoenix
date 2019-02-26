@@ -6,6 +6,8 @@ function editArticle() {
     post(url, data/*, new function (msg) {
         alert("req result:" + msg);
     }*/);
+    // 跳转到首页
+    jump2Home();
 }
 
 /**
