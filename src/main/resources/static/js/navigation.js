@@ -15,5 +15,5 @@ function jump2Tags() {
 
 // 跳转到archive页面
 function jump2Archive() {
-    window.location.href = "http://localhost:8080/html/archive.html";
+    window.location.href = "http://localhost:8080/html/archives.html";
 }

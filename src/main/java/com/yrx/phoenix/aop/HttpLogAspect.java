@@ -9,6 +9,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by r.x on 2019/2/26.
@@ -26,6 +30,17 @@ public class HttpLogAspect {
 
     @Around("ctrl()")
     public Object log(ProceedingJoinPoint joinPoint) {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        //IP地址
+        String ipAddr = getRemoteHost(request);
+        String url = request.getRequestURL().toString();
+        // String reqParam = preHandle(joinPoint,request);
+        // log.info("请求源IP:【{}】,请求URL:【{}】,请求参数:【{}】",ipAddr,url,reqParam);
+
+        // Object result= joinPoint.proceed();
+        // String respParam = postHandle(result);
+        // log.info("请求源IP:【{}】,请求URL:【{}】,返回参数:【{}】",ipAddr,url,respParam);
+
         long start = System.currentTimeMillis();
         String json = null;
         Object[] args = joinPoint.getArgs();
@@ -49,5 +64,36 @@ public class HttpLogAspect {
             log.info("call after: cost time:{}ms, req param:{}, return json:{}", (end - start), json, result);
         }
         return result;
+    }
+
+    /**
+     * 获取目标主机的ip
+     * @param request
+     * @return
+     */
+    private String getRemoteHost(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : ip;
+    }
+
+    /**
+     * 返回数据
+     * @param retVal
+     * @return
+     */
+    private String postHandle(Object retVal) {
+        if(null == retVal){
+            return "";
+        }
+        return JSON.toJSONString(retVal);
     }
 }
