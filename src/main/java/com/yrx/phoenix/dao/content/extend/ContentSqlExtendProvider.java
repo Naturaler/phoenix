@@ -1,4 +1,4 @@
-package com.yrx.phoenix.dao.extend;
+package com.yrx.phoenix.dao.content.extend;
 
 import org.apache.ibatis.jdbc.SQL;
 

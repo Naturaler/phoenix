@@ -1,4 +1,4 @@
-package com.yrx.phoenix.dto;
+package com.yrx.phoenix.dto.article;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.yrx.phoenix.entity.Article;

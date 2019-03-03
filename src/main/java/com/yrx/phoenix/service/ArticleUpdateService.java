@@ -1,9 +1,9 @@
 package com.yrx.phoenix.service;
 
 import com.yrx.phoenix.core.Response;
-import com.yrx.phoenix.dao.ArticleMapper;
-import com.yrx.phoenix.dao.ContentMapper;
-import com.yrx.phoenix.dao.TagInfoMapper;
+import com.yrx.phoenix.dao.article.ArticleMapper;
+import com.yrx.phoenix.dao.content.ContentMapper;
+import com.yrx.phoenix.dao.tag.TagInfoMapper;
 import com.yrx.phoenix.entity.*;
 import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;

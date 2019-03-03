@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <link href="../css/index.css" rel="stylesheet" type="text/css"/>
   <link href="../css/tags.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="../js/httpUtil.js"></script>
   <script type="text/javascript" src="../js/navigation.js"></script>
+  <script type="text/javascript" src="../js/tag.js"></script>
   <title>标签</title>
 </head>
-<body>
+<body onload="listTags()">
 <!-- logo 开始 -->
 <div id="head">
   <div class="title">行走的鸡汤</div>
@@ -22,6 +24,7 @@
   <span class="navigation" onclick="jump2Archive()">Archives</span>
 </div>
 <!-- 导航条 结束 -->
+<!-- 标签 开始 -->
 <div id="tags">
   <span class="tag">mysql</span>
   <span class="tag">spark</span>
@@ -30,5 +33,6 @@
   <span class="tag">nginx</span>
   <span class="tag">js</span>
 </div>
+<!-- 标签 结束 -->
 </body>
 </html>

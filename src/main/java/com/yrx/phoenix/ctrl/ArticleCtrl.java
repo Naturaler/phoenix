@@ -1,8 +1,8 @@
 package com.yrx.phoenix.ctrl;
 
 import com.yrx.phoenix.core.Response;
-import com.yrx.phoenix.dto.ArticleDTO;
-import com.yrx.phoenix.dto.ArticleListDTO;
+import com.yrx.phoenix.dto.article.ArticleDTO;
+import com.yrx.phoenix.dto.article.ArticleListDTO;
 import com.yrx.phoenix.service.ArticleQueryService;
 import com.yrx.phoenix.service.ArticleUpdateService;
 import com.yrx.phoenix.vo.ArticleVO;
@@ -52,5 +52,15 @@ public class ArticleCtrl {
     @PostMapping("/createOUpdate")
     public Response<Integer> createOUpdate(@RequestBody ArticleVO articleVO) {
         return updateService.createOUpdate(articleVO);
+    }
+
+    /**
+     * 根据标签查询文章
+     *
+     * @param tag 标签
+     */
+    @GetMapping("/listByTag")
+    public Response<ArticleListDTO> listByTag(String tag) {
+        return queryService.listByTag(tag);
     }
 }

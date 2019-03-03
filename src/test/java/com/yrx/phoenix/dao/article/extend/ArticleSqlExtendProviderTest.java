@@ -1,4 +1,4 @@
-package com.yrx.phoenix.dao.extend;
+package com.yrx.phoenix.dao.article.extend;
 
 import org.junit.Assert;
 import org.junit.Test;

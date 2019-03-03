@@ -1,10 +1,10 @@
-package com.yrx.phoenix.dao.extend;
+package com.yrx.phoenix.dao.article.extend;
 
-import com.yrx.phoenix.dao.ArticleMapper;
+import com.yrx.phoenix.dao.article.ArticleMapper;
+import com.yrx.phoenix.dto.archive.ArchiveListDTO;
+import com.yrx.phoenix.dto.category.CategoryListDTO;
 import com.yrx.phoenix.entity.Article;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
@@ -38,4 +38,24 @@ public interface ArticleExtendMapper extends ArticleMapper {
             @Result(column="content_id", property="contentId", jdbcType=JdbcType.INTEGER)
     })
     Article getById(Integer id);
+
+    @Select({
+            "select * from article a join tag_info t on a.id = t.article_id where t.tag = #{tag,jdbcType=VARCHAR}"
+    })
+    List<Article> listByTag(@Param("tag") String tag);
+
+    @SelectProvider(type= ArticleSqlExtendProvider.class, method="listCategories")
+    @Results({
+            @Result(column="category", property="category", jdbcType=JdbcType.VARCHAR),
+            @Result(column="c", property="count", jdbcType=JdbcType.INTEGER),
+    })
+    List<CategoryListDTO.CategoryDTO> listCategories();
+
+    @SelectProvider(type= ArticleSqlExtendProvider.class, method="listArticleOrderByYear")
+    @Results({
+            @Result(column="year", property="year", jdbcType=JdbcType.VARCHAR),
+            @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="insert_time", property="insertTime", jdbcType=JdbcType.TIMESTAMP),
+    })
+    List<ArchiveListDTO.ArchiveDTO> listArticleOrderByYear();
 }

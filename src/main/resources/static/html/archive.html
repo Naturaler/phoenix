@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<link href="../css/index.css" rel="stylesheet" type="text/css"/>
+	<link href="../css/archives.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="../js/navigation.js"></script>
-  <title>archive</title>
+  <script type="text/javascript" src="../js/httpUtil.js"></script>
+  <script type="text/javascript" src="../js/archive.js"></script>
+	<title>档案</title>
 </head>
-<body>
+<body onload="listArticleOrderByYear()">
 <!-- logo 开始 -->
 <div id="head">
   <div class="title">行走的鸡汤</div>
@@ -20,5 +24,23 @@
   <span class="navigation" onclick="jump2Archive()">Archives</span>
 </div>
 <!-- 导航条 结束 -->
+<div id="archives">
+  <ul>
+    <li><span>10-10 《代码整洁之道》</span></li>
+    <li><span>10-10 《代码整洁之道》</span></li>
+    <li><span>10-10 《代码整洁之道》</span></li>
+    <li><span>10-10 《代码整洁之道》</span></li>
+    <li><span>10-10 《代码整洁之道》</span></li>
+  </ul>
+</div>
+<div id="tail">
+  <ul>
+    <li class="page_number">1</li>
+    <li class="page_number">2</li>
+    <li class="page_number">3</li>
+    <li class="page_number">4</li>
+    <li class="page_number">5</li>
+  </ul>
+</div>
 </body>
 </html>

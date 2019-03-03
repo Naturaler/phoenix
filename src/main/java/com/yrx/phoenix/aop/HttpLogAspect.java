@@ -45,7 +45,7 @@ public class HttpLogAspect {
         String json = null;
         Object[] args = joinPoint.getArgs();
         if (args != null) {
-            if (args[0] instanceof BaseVO) {
+            if (args.length > 0 && args[0] instanceof BaseVO) {
                 BaseVO baseVO = (BaseVO) args[0];
                 json = JSON.toJSONString(baseVO);
             }
@@ -68,6 +68,7 @@ public class HttpLogAspect {
 
     /**
      * 获取目标主机的ip
+     *
      * @param request
      * @return
      */
@@ -87,11 +88,12 @@ public class HttpLogAspect {
 
     /**
      * 返回数据
+     *
      * @param retVal
      * @return
      */
     private String postHandle(Object retVal) {
-        if(null == retVal){
+        if (null == retVal) {
             return "";
         }
         return JSON.toJSONString(retVal);

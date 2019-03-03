@@ -1,4 +1,4 @@
-package com.yrx.phoenix.dao;
+package com.yrx.phoenix.dao.article;
 
 import com.yrx.phoenix.entity.Article;
 import com.yrx.phoenix.entity.ArticleExample;

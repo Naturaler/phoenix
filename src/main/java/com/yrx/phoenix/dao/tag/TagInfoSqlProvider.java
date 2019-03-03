@@ -1,12 +1,13 @@
-package com.yrx.phoenix.dao;
+package com.yrx.phoenix.dao.tag;
 
 import com.yrx.phoenix.entity.TagInfo;
+import com.yrx.phoenix.entity.TagInfoExample;
 import com.yrx.phoenix.entity.TagInfoExample.Criteria;
 import com.yrx.phoenix.entity.TagInfoExample.Criterion;
-import com.yrx.phoenix.entity.TagInfoExample;
+import org.apache.ibatis.jdbc.SQL;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.jdbc.SQL;
 
 public class TagInfoSqlProvider {
 

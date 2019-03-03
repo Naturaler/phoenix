@@ -4,10 +4,12 @@
 	<meta charset="UTF-8">
 	<link href="../css/index.css" rel="stylesheet" type="text/css"/>
 	<link href="../css/category.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="../js/httpUtil.js"></script>
   <script type="text/javascript" src="../js/navigation.js"></script>
+  <script type="text/javascript" src="../js/category.js"></script>
 	<title>标签</title>
 </head>
-<body>
+<body onload="listCategories()">
 <!-- logo 开始 -->
 <div id="head">
   <div class="title">行走的鸡汤</div>
@@ -22,11 +24,13 @@
   <span class="navigation" onclick="jump2Archive()">Archives</span>
 </div>
 <!-- 导航条 结束 -->
+<!-- 类别标签 开始 -->
 <div id="category">
-  <ul>
+  <ul id="cccccccccccc">
     <li><span>修仙之旅（1）</span></li>
     <li><span>吃饭的家伙（11）</span></li>
   </ul>
 </div>
+<!-- 类别标签 结束 -->
 </body>
 </html>
