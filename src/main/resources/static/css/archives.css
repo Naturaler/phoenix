@@ -1,12 +1,16 @@
 #archives li {
-    border-bottom: 1px dotted #e9e9e9;
     padding: 20px 0px;
     color: #e9e9e9;
 }
-#archives li:hover {
+#archives li h1 {
+    color: black;
+    margin-top: 10px;
+}
+#archives li ul li:hover {
     color: black;
     border-bottom: 1px dotted black;
-}
-#archives span:hover {
     cursor: pointer;
+}
+#archives li h1:hover {
+    color: black;
 }

@@ -9,12 +9,22 @@ function listTags() {
         } else {
             var tags = document.getElementById("tags");
             var tagList = json.result.tagList;
-            for (var index in tagList) {
-                var tag = document.createElement("span");
-                tag.className = "tag";
-                tag.textContent = tagList[index].tag;
-                tags.appendChild(tag);
+            var s = "";
+            var min = tagList[0].count;
+            var max = tagList[0].count;
+            for (var i in tagList) {
+                if (min > tagList[i].count) {
+                    min = tagList[i].count;
+                }
+                if (max < tagList[i].count) {
+                    max = tagList[i].count;
+                }
             }
+            var perSize = 20 / (max - min);
+            for (var index in tagList) {
+                s += "<span class='tag' style='font-size: " + (20 + (tagList[index].count - min) * perSize) + "px;'>" + tagList[index].tag + "</span>";
+            }
+            tags.innerHTML = s;
         }
     })
 }
