@@ -17,3 +17,8 @@ function jump2Tags() {
 function jump2Archive() {
     window.location.href = "http://localhost:8080/html/archive.html";
 }
+
+// 根据文章id跳转到文章页面
+function getArticleById(articleId) {
+    window.location.href = "http://localhost:8080/html/article.html?id=" + articleId;
+}

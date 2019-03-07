@@ -15,6 +15,7 @@ public class ArchiveListDTO {
 
     @Data
     public static class ArchiveDTO {
+        private Integer id;
         private String year;
         private String title;
         @JsonFormat(pattern = "MM-dd")

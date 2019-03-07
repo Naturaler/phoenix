@@ -48,6 +48,7 @@ public class ArticleSqlExtendProvider {
     public String listArticleOrderByYear() {
         SQL sql = new SQL();
         sql.SELECT("substr(insert_time, 1, 4) as year");
+        sql.SELECT("id");
         sql.SELECT("title");
         sql.SELECT("insert_time");
         sql.FROM("article");

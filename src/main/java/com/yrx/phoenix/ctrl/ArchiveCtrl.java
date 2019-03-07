@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/archive")
-public class Archive {
+public class ArchiveCtrl {
     @Autowired
     private ArchiveQueryService archiveQueryService;
 

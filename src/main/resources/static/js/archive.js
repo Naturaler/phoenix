@@ -28,7 +28,7 @@ function listArticleOrderByYear() {
                     }
                     if (archiveList[i].year === yearList[yearIndex]) {
                         var archive = document.createElement("li");
-                        archive.innerHTML = "<span>" + archiveList[i].insertTime + " " + archiveList[i].title + "</span>";
+                        archive.innerHTML = "<span onclick='getArticleById(" + archiveList[i].id + ")'>" + archiveList[i].insertTime + " " + archiveList[i].title + "</span>";
                         archiveUl.appendChild(archive);
                     }
                 }

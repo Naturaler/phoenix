@@ -53,6 +53,7 @@ public interface ArticleExtendMapper extends ArticleMapper {
 
     @SelectProvider(type= ArticleSqlExtendProvider.class, method="listArticleOrderByYear")
     @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER),
             @Result(column="year", property="year", jdbcType=JdbcType.VARCHAR),
             @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
             @Result(column="insert_time", property="insertTime", jdbcType=JdbcType.TIMESTAMP),
