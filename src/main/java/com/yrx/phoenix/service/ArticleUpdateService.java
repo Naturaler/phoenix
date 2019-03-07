@@ -1,9 +1,10 @@
 package com.yrx.phoenix.service;
 
 import com.yrx.phoenix.core.Response;
-import com.yrx.phoenix.dao.article.ArticleMapper;
-import com.yrx.phoenix.dao.content.ContentMapper;
-import com.yrx.phoenix.dao.tag.TagInfoMapper;
+import com.yrx.phoenix.dao.local.article.ArticleMapper;
+import com.yrx.phoenix.dao.local.content.ContentMapper;
+import com.yrx.phoenix.dao.local.tag.TagInfoMapper;
+import com.yrx.phoenix.dao.remote.article.extend.ArticleExtendMapperRemote;
 import com.yrx.phoenix.entity.*;
 import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.Date;
 public class ArticleUpdateService {
     @Autowired
     private ArticleMapper articleMapper;
+    @Autowired
+    private ArticleExtendMapperRemote articleMapperRemote;
     @Autowired
     private ContentMapper contentMapper;
     @Autowired
@@ -99,6 +102,7 @@ public class ArticleUpdateService {
         article.setContentId(content.getId());
         article.setInsertTime(new Date());
         articleMapper.insert(article);
+        articleMapperRemote.insert(article);
         return article.getId();
     }
 

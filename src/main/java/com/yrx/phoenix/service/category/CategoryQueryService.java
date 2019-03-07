@@ -1,10 +1,8 @@
 package com.yrx.phoenix.service.category;
 
 import com.yrx.phoenix.core.Response;
-import com.yrx.phoenix.dao.article.extend.ArticleExtendMapper;
-import com.yrx.phoenix.dao.tag.extend.TagInfoExtendMapper;
+import com.yrx.phoenix.dao.local.article.extend.ArticleExtendMapper;
 import com.yrx.phoenix.dto.category.CategoryListDTO;
-import com.yrx.phoenix.dto.tag.TagListDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

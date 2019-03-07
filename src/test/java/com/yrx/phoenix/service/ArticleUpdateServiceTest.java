@@ -10,6 +10,6 @@ public class ArticleUpdateServiceTest {
     @Test
     public void testConvertVo2ArticleEntity() {
         String s = "1234567";
-        System.out.println(s.substring(0, 100));
+        // System.out.println(s.substring(0, 100));
     }
 }

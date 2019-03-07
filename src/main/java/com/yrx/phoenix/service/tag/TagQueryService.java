@@ -1,7 +1,7 @@
 package com.yrx.phoenix.service.tag;
 
 import com.yrx.phoenix.core.Response;
-import com.yrx.phoenix.dao.tag.extend.TagInfoExtendMapper;
+import com.yrx.phoenix.dao.local.tag.extend.TagInfoExtendMapper;
 import com.yrx.phoenix.dto.tag.TagListDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

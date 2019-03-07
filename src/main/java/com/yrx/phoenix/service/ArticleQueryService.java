@@ -1,9 +1,9 @@
 package com.yrx.phoenix.service;
 
 import com.yrx.phoenix.core.Response;
-import com.yrx.phoenix.dao.tag.TagInfoMapper;
-import com.yrx.phoenix.dao.article.extend.ArticleExtendMapper;
-import com.yrx.phoenix.dao.content.extend.ContentExtendMapper;
+import com.yrx.phoenix.dao.local.tag.TagInfoMapper;
+import com.yrx.phoenix.dao.local.article.extend.ArticleExtendMapper;
+import com.yrx.phoenix.dao.local.content.extend.ContentExtendMapper;
 import com.yrx.phoenix.dto.article.ArticleDTO;
 import com.yrx.phoenix.dto.article.ArticleListDTO;
 import com.yrx.phoenix.entity.*;
