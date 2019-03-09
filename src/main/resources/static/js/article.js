@@ -1,10 +1,10 @@
 function getArticleId() {
     var indexUrl = location.search;
-    if (indexUrl.indexOf("?") != -1) {
+    if (indexUrl.indexOf("?") !== -1) {
         var str = indexUrl.substr(1);
         console.log(str);
         var url = "http://localhost:8080/article/getById?" + str;
-        hpptGet(url, null, function showArticle(json) {
+        httpGet(url, null, function showArticle(json) {
             console.log("getById result:" + json);
             var dto = JSON.parse(json);
             if (dto.code !== 200) {

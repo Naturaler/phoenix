@@ -22,3 +22,8 @@ function jump2Archive() {
 function getArticleById(articleId) {
     window.location.href = "http://localhost:8080/html/article.html?id=" + articleId;
 }
+
+// 根据标签或分类跳转到文章列表页面
+function getArticleByTypeNParam(type, param) {
+    window.location.href = "http://localhost:8080/html/articleList.html?type=" + type + "&param=" + param;
+}

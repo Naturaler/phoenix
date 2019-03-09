@@ -40,7 +40,16 @@ public interface ArticleExtendMapper extends ArticleMapper {
     Article getById(Integer id);
 
     @Select({
-            "select * from article a join tag_info t on a.id = t.article_id where t.tag = #{tag,jdbcType=VARCHAR}"
+            "select a.id, a.title, a.outline, a.category, a.update_time, a.insert_time, a.content_id from article a join tag_info t on a.id = t.article_id where t.tag = #{tag,jdbcType=VARCHAR}"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType= JdbcType.INTEGER),
+            @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="outline", property="outline", jdbcType=JdbcType.VARCHAR),
+            @Result(column="category", property="category", jdbcType=JdbcType.VARCHAR),
+            @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="insert_time", property="insertTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="content_id", property="contentId", jdbcType=JdbcType.INTEGER)
     })
     List<Article> listByTag(@Param("tag") String tag);
 

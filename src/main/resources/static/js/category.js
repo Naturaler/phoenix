@@ -2,7 +2,7 @@
 function listCategories() {
     var url = "http://localhost:8080/category/list";
     var data = null;
-    hpptGet(url, data, function (httpResult) {
+    httpGet(url, data, function (httpResult) {
         var json = JSON.parse(httpResult);
         if (!json.code === 200) {
             console.log("http get tag error!" + json);
@@ -12,7 +12,7 @@ function listCategories() {
             var categoryList = json.result.categoryList;
             for (var index in categoryList) {
                 var category = document.createElement("li");
-                category.innerHTML = "<span>" + categoryList[index].category + "(" + categoryList[index].count + ")</span>";
+                category.innerHTML = "<span onclick='getArticleByTypeNParam(\"category\", \"" + categoryList[index].category + "\")'>" + categoryList[index].category + "(" + categoryList[index].count + ")</span>";
                 console.log("category:" + category);
                 categories.appendChild(category);
             }

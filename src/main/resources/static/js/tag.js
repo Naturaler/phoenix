@@ -2,7 +2,7 @@
 function listTags() {
     var url = "http://localhost:8080/tag/list";
     var data = null;
-    hpptGet(url, data, function (httpResult) {
+    httpGet(url, data, function (httpResult) {
         var json = JSON.parse(httpResult);
         if (!json.code === 200) {
             console.log("http get tag error!" + json);
@@ -22,7 +22,7 @@ function listTags() {
             }
             var perSize = 20 / (max - min);
             for (var index in tagList) {
-                s += "<span class='tag' style='font-size: " + (20 + (tagList[index].count - min) * perSize) + "px;'>" + tagList[index].tag + "</span>";
+                s += "<span class='tag' style='font-size: " + (20 + (tagList[index].count - min) * perSize) + "px;' onclick='getArticleByTypeNParam(\"tag\", \"" + tagList[index].tag + "\")'>" + tagList[index].tag + "</span>";
             }
             tags.innerHTML = s;
         }

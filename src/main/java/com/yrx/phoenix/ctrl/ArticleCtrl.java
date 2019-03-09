@@ -63,4 +63,14 @@ public class ArticleCtrl {
     public Response<ArticleListDTO> listByTag(String tag) {
         return queryService.listByTag(tag);
     }
+
+    /**
+     * 根据类别查询文章
+     *
+     * @param category 类别
+     */
+    @GetMapping("/listByCategory")
+    public Response<ArticleListDTO> listByCategory(String category) {
+        return queryService.listByCategory(category);
+    }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class ArticleListDTO {
     private List<ArticleDesc> articleDescList;
     private Integer amount; // 总数
+    private String content; // tag? category?
 
     public ArticleListDTO() {
     }
@@ -31,7 +32,9 @@ public class ArticleListDTO {
     public static class ArticleDesc {
         private Integer id; // article 主键
         private String title; // 标题
-        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        private Date insertTime; // 创建时间
+        @JsonFormat(pattern = "yyyy-MM-dd")
         private Date updateTime; // 更新时间
         private String outline; // 内容概要
         private String category; // 类别
@@ -43,6 +46,7 @@ public class ArticleListDTO {
         public ArticleDesc(Article article) {
             this.id = article.getId();
             this.title = article.getTitle();
+            this.insertTime = article.getInsertTime();
             this.updateTime = article.getUpdateTime();
             this.category = article.getCategory();
             this.outline = article.getOutline();

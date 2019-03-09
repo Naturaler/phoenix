@@ -1,7 +1,7 @@
 function listArticleOrderByYear() {
     var url = "http://localhost:8080/archive/listArticleOrderByYear";
     var data = null;
-    hpptGet(url, data, function (httpResult) {
+    httpGet(url, data, function (httpResult) {
         var json = JSON.parse(httpResult);
         if (!json.code === 200) {
             console.log("http get tag error!" + json);

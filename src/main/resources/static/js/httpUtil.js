@@ -1,7 +1,7 @@
 /**
  *get请求
  */
-var hpptGet = function(url, data, success) {
+var httpGet = function(url, data, success) {
     console.log("data:" + data);
     var xmlhttp = null;
     if (window.XMLHttpRequest) {
@@ -50,7 +50,7 @@ var hpptGet = function(url, data, success) {
  *post请求
  *
  */
-var hpptPost = function(url, data, success) {
+var httpPost = function(url, data, success) {
     console.log("data:" + data);
     var xmlhttp = null;
     if (window.XMLHttpRequest) {
