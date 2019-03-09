@@ -5,9 +5,13 @@ import com.yrx.phoenix.dto.article.ArticleDTO;
 import com.yrx.phoenix.dto.article.ArticleListDTO;
 import com.yrx.phoenix.service.ArticleQueryService;
 import com.yrx.phoenix.service.ArticleUpdateService;
+import com.yrx.phoenix.util.EsHelper;
 import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by r.x on 2019/2/11.
@@ -72,5 +76,10 @@ public class ArticleCtrl {
     @GetMapping("/listByCategory")
     public Response<ArticleListDTO> listByCategory(String category) {
         return queryService.listByCategory(category);
+    }
+
+    @GetMapping("/search")
+    public Response<List<Map>> search(String keyword) {
+        return Response.success(EsHelper.search(keyword));
     }
 }

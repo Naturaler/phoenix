@@ -5,6 +5,7 @@ import com.yrx.phoenix.dao.article.ArticleMapper;
 import com.yrx.phoenix.dao.content.ContentMapper;
 import com.yrx.phoenix.dao.tag.TagInfoMapper;
 import com.yrx.phoenix.entity.*;
+import com.yrx.phoenix.util.EsHelper;
 import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,14 +34,19 @@ public class ArticleUpdateService {
         Integer articleId;
         if (articleVO.getId() == null) {
             articleId = insertArticle(content, article);
+            // 保存到es
+            EsHelper.insert(article, articleVO.getPlainText(), articleVO.getTags());
         } else {
             articleId = updateArticle(articleVO, content, article);
+            // 更新es
+            EsHelper.update(article, articleVO.getPlainText(), articleVO.getTags());
         }
-        deleteNInsertTag(articleVO, articleId);
+        // 保存tag
+        createOUpdateTag(articleVO, articleId);
         return Response.success(articleId);
     }
 
-    private void deleteNInsertTag(ArticleVO articleVO, Integer articleId) {
+    private void createOUpdateTag(ArticleVO articleVO, Integer articleId) {
         // 删除tag
         TagInfoExample tagInfoExample = new TagInfoExample();
         TagInfoExample.Criteria criteria = tagInfoExample.createCriteria();
@@ -60,6 +66,7 @@ public class ArticleUpdateService {
 
     private Article convertVo2ArticleEntity(ArticleVO articleVO) {
         Article article = new Article();
+        article.setId(articleVO.getId());
         article.setTitle(articleVO.getTitle());
         if (articleVO.getPlainText().length() > 500) {
             article.setOutline(articleVO.getPlainText().substring(0, 500));
@@ -75,6 +82,7 @@ public class ArticleUpdateService {
         Content content = new Content();
         content.setContent(articleVO.getContent());
         content.setUpdateTime(new Date());
+        content.setId(articleVO.getContentId());
         return content;
     }
 
