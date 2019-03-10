@@ -1,5 +1,6 @@
 package com.yrx.phoenix.util;
 
+import com.yrx.phoenix.dto.article.ArticleListDTO;
 import com.yrx.phoenix.entity.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -22,10 +23,13 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Created by r.x on 2019/2/12.
@@ -91,7 +95,7 @@ public class EsHelper {
         }
     }
 
-    public static List<Map> search(String keyword) {
+    public static ArticleListDTO search(String keyword) {
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http")));
         SearchRequest request = new SearchRequest("phoenix");
@@ -103,7 +107,7 @@ public class EsHelper {
         sourceBuilder.query(boolQueryBuilder);
         sourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
         request.source(sourceBuilder);
-        List<Map> list = new ArrayList<>();
+        List<Map<String, Object>> list = new ArrayList<>();
         try {
             SearchResponse response = client.search(request, RequestOptions.DEFAULT);
             SearchHits hits = response.getHits();
@@ -116,6 +120,28 @@ public class EsHelper {
         } catch (IOException e) {
             log.error("get article error! keyword:{}, exception:{}", keyword, e);
         }
-        return list;
+        return constructDtoFromMap(list);
+    }
+
+    private static ArticleListDTO constructDtoFromMap(List<Map<String, Object>> list) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        List<Article> articleList = list.stream().map(map -> {
+            Article article = new Article();
+            article.setId((Integer) map.get("id"));
+            article.setTitle((String) map.get("title"));
+            try {
+                if (map.get("insertTime") != null) {
+                    article.setInsertTime(format.parse((String) map.get("insertTime")));
+                }
+                article.setUpdateTime(format.parse((String) map.get("updateTime")));
+            } catch (ParseException e) {
+                log.error("datetime format error! source:{}, exception:{}", list, e);
+            }
+            article.setCategory((String) map.get("category"));
+            article.setOutline((String) map.get("plainText"));
+            return article;
+        }).collect(Collectors.toList());
+        ArticleListDTO dto = new ArticleListDTO(articleList);
+        return dto;
     }
 }

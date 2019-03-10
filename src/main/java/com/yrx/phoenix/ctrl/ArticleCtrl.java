@@ -10,9 +10,6 @@ import com.yrx.phoenix.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by r.x on 2019/2/11.
  */
@@ -79,7 +76,7 @@ public class ArticleCtrl {
     }
 
     @GetMapping("/search")
-    public Response<List<Map>> search(String keyword) {
+    public Response<ArticleListDTO> search(String keyword) {
         return Response.success(EsHelper.search(keyword));
     }
 }

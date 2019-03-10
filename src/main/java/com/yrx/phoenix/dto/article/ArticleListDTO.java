@@ -26,6 +26,7 @@ public class ArticleListDTO {
             ArticleDesc desc = new ArticleDesc(article);
             articleDescList.add(desc);
         }
+        this.amount = articleList.size();
     }
 
     @Data

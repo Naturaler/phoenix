@@ -27,12 +27,17 @@ function loadBaseLayout() {
     navigationArchive.textContent = "Archives";
     navigationArchive.className = "navigation";
     navigationArchive.setAttribute("onclick", "jump2Archive()");
+    var navigationSearch = document.createElement("span");
+    navigationSearch.textContent = "Search";
+    navigationSearch.className = "navigation";
+    navigationSearch.setAttribute("onclick", "jump2Search()");
     var navigations = document.createElement("div");
     navigations.id = "navigations";
     navigations.appendChild(navigationHome);
     navigations.appendChild(navigationTags);
     navigations.appendChild(navigationCategory);
     navigations.appendChild(navigationArchive);
+    navigations.appendChild(navigationSearch);
     var articleList = document.createElement("div");
     articleList.id = "archives";
     var ul = document.createElement("ul");
