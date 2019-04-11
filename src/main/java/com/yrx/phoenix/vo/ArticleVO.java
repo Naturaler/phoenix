@@ -1,11 +1,13 @@
 package com.yrx.phoenix.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * Created by r.x on 2019/2/9.
  */
 @Data
+@Builder
 public class ArticleVO extends BaseVO {
     private Integer id; // 主键id
     private Integer contentId; // 文章内容id
